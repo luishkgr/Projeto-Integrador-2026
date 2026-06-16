@@ -15,28 +15,51 @@ def mostrar_funcionarios(frame_conteudo):
         font=("Segoe UI Semibold", 32),
         text_color="#0B2A6F"
     )
-    titulo.grid(row=0, column=0, columnspan=3, pady=(60, 40))
+    titulo.grid(row=0, column=0, columnspan=3, pady=(60, 20))
+
+
+    funcionarios =ctk.CTkFrame(
+        frame_conteudo,
+        border_width=1,
+        corner_radius=3,
+        width=800,
+        height=350,
+        border_color="#000000"
+    )
+    funcionarios.grid(row=1, column=0, columnspan=3, pady=30)
 
     btn_add = ctk.CTkButton(
         frame_conteudo,
-        text="Adicionar",
-        font=("Segoe UI Semibold", 15),
+        text="Adicionar Funcionário +",
+        font=("Segoe UI Semibold", 14),
         text_color="#ffffff",
         width=150,
         hover_color="#2aa04d",
-        height=50,
+        height=40,
         fg_color="#30b457"
     )
-    btn_add.grid(row=1, column=0)
+    btn_add.grid(row=0, column=2, pady=(60, 20), sticky="e", padx=30)
 
     btn_edit = ctk.CTkButton(
         frame_conteudo,
         text="Editar",
         font=("Segoe UI Semibold", 15),
-        text_color="#343ec9",
+        hover_color="#343ec9",
         text_color="#ffffff",
         width=150,
-        height=50,
+        height=40,
         fg_color="#3c48eb"
     )
-    btn_edit.grid(row=1, column=1, columnspan=2)
+    btn_edit.grid(row=2, column=0, columnspan=2, padx=(200,10))
+
+    btn_delete = ctk.CTkButton(
+        frame_conteudo,
+        text="Excluir",
+        font=("Segoe UI Semibold", 15),
+        text_color="#ffffff",
+        width=150,
+        height=40,
+        fg_color="#f31c1c",
+        hover_color="#f13535"
+    )
+    btn_delete.grid(row=2, column=1,columnspan=3, padx=10)
