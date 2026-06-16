@@ -15,13 +15,28 @@ def mostrar_funcionarios(frame_conteudo):
         font=("Segoe UI Semibold", 32),
         text_color="#0B2A6F"
     )
-    titulo.grid(row=0, column=0, columnspan=3, pady=(60, 20))
+    titulo.grid(row=0, column=0, columnspan=3, pady=(60, 40))
 
-    card1 = ctk.CTkFrame(frame_conteudo, width=250, height=120)
-    card1.grid(row=1, column=0, padx=20, pady=20)
+    btn_add = ctk.CTkButton(
+        frame_conteudo,
+        text="Adicionar",
+        font=("Segoe UI Semibold", 15),
+        text_color="#ffffff",
+        width=150,
+        hover_color="#2aa04d",
+        height=50,
+        fg_color="#30b457"
+    )
+    btn_add.grid(row=1, column=0)
 
-    card2 = ctk.CTkFrame(frame_conteudo, width=250, height=120)
-    card2.grid(row=1, column=1, padx=20, pady=20)
-
-    card3 = ctk.CTkFrame(frame_conteudo, width=250, height=120)
-    card3.grid(row=1, column=2, padx=20, pady=20)
+    btn_edit = ctk.CTkButton(
+        frame_conteudo,
+        text="Editar",
+        font=("Segoe UI Semibold", 15),
+        text_color="#343ec9",
+        text_color="#ffffff",
+        width=150,
+        height=50,
+        fg_color="#3c48eb"
+    )
+    btn_edit.grid(row=1, column=1, columnspan=2)
