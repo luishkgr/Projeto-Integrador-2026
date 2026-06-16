@@ -1,0 +1,1 @@
+# Scripts para criar o banco de dados e as tabelas necessárias para o projeto.
