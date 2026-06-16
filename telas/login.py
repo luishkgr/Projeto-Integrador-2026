@@ -2,7 +2,7 @@ import customtkinter as ctk
 from PIL import Image
 from CTkMessagebox import CTkMessagebox
 
-def login(login, senha):
+def montar_tela_login(login, senha):
 
     login = entry_usuario.get()
     senha = entry_senha.get()
