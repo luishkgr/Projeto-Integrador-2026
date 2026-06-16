@@ -21,7 +21,7 @@ def montar_tela_login(login, senha):
             icon="cancel"
         )
 
-##region configuração da tela
+###region configuração da tela
 
 janela_login = ctk.CTk()
 janela_login.title("Sistema de Horários e Escala de Plantão")
