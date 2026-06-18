@@ -1,15 +1,11 @@
 #Scripts para criar o banco de dados e as tabelas necessárias para o projeto.
-
-
-
-
 table_usuario = ("""CREATE TABLE IF NOT EXISTS "usuario" (
  
 	"id"	INTEGER NOT NULL,
  
 	"nome"	VARCHAR(50) NOT NULL,
  
-	"login"	VARCHAR(50) NOT NULL UNIQUE,
+	"login"	VARCHAR(100) NOT NULL UNIQUE,
  
 	"senha"	VARCHAR(50) NOT NULL,
  

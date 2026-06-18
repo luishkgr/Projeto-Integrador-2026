@@ -1,4 +1,2 @@
-.git/
-telas/__pycache__/
+bancodedados/banco.db
 *.pyc
-bancodedados/bancodedados.db
