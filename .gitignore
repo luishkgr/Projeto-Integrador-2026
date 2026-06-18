@@ -1,2 +1,4 @@
+.git/
 telas/__pycache__/
+*.pyc
 bancodedados/bancodedados.db

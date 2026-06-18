@@ -34,7 +34,6 @@ def mostrar_funcionarios(frame_conteudo):
         text="Editar",
         font=("Segoe UI Semibold", 15),
         text_color="#343ec9",
-        text_color="#ffffff",
         width=150,
         height=50,
         fg_color="#3c48eb"
