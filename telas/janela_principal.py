@@ -240,7 +240,7 @@ btn_func = ctk.CTkButton(
     frame_func,
     text="  Funcionários",
     image=img_btn_func,
-    command=lambda: tela_funcionarios.mostrar_funcionarios(frame_conteudo),
+    command=lambda: tela_funcionarios.montar_tela_funcionarios(frame_conteudo),
     font=("Segoe UI Semibold", 15),
     compound="left",
     anchor="w",
