@@ -1,2 +1,2 @@
-telas/__pycache__/
-bancodedados/bancodedados.db
+bancodedados/banco.db
+*.pyc
