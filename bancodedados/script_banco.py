@@ -38,7 +38,8 @@ table_profissional =(""" CREATE TABLE IF NOT EXISTS "profissional" (
 	"cargo"	VARCHAR(50) NOT NULL,
  
 	"status"	VARCHAR(50) NOT NULL,
-	"registro_profissional"	VARCHAR(50) NOT NULL,
+                     
+	"registro_profissional"	VARCHAR(50) NOT NULL UNIQUE,
  
 	"fone"	VARCHAR(50) NOT NULL,
  
