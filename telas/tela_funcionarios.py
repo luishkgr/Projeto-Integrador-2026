@@ -8,16 +8,15 @@ def busca_funci():
     cursor = conexao.cursor()
     cursor.execute("SELECT * FROM profissional")
     dados = cursor.fetchall()
-    print(dados)
     conexao.close()
+    return dados
 
 
 
 #endregion
 
-
 #region config tela
-def mostrar_funcionarios(frame_conteudo):
+def montar_tela_funcionarios(frame_conteudo):
     for widget in frame_conteudo.winfo_children():
         widget.destroy()
 
@@ -42,7 +41,7 @@ def mostrar_funcionarios(frame_conteudo):
         "Adicionar funcionário +",
         comando=lambda: print("Função em desenvolvimento"),
     )
-    btn_add.grid(row=1,column=0, sticky="w", padx=100)
+    btn_add.grid(row=1,column=0, sticky="w", padx=80)
 
     frame_botoes = ctk.CTkFrame(
     frame_conteudo,
@@ -77,7 +76,7 @@ def mostrar_funcionarios(frame_conteudo):
         frame_info_funci,
         border_width=1,
         corner_radius=3,
-        width=750,
+        width=800,
         height=400,
         border_color="#000000"
     )
@@ -86,6 +85,7 @@ def mostrar_funcionarios(frame_conteudo):
     frame_funcionarios.grid_columnconfigure(1, weight=4)
     frame_funcionarios.grid_columnconfigure(2, weight=3)
     frame_funcionarios.grid_columnconfigure(3, weight=2)
+
 
     label_id = ctk.CTkLabel(
         frame_funcionarios,
@@ -122,12 +122,57 @@ def mostrar_funcionarios(frame_conteudo):
     )
     linha.grid(row=1, column=0, columnspan=4, sticky="ew", padx=10)
 
+    funcionarios = busca_funci()
 
+    for funcionario in funcionarios:
+        id_funcionario = funcionario[0]
+        nome = funcionario[1]
+        cargo = funcionario[2]
+        status = funcionario[3]
 
+        ctk.CTkLabel(
+            frame_funcionarios,
+            text=id_funcionario
+        ).grid(row=1, column=0, pady=8, padx=10, sticky="ew")
 
+        ctk.CTkLabel(
+            frame_funcionarios,
+            text=nome
+        ).grid(row=1, column=1, pady=8, padx=10, sticky="ew")
 
+        ctk.CTkLabel(
+            frame_funcionarios,
+            text=cargo
+        ).grid(row=1, column=2, pady=8, padx=10, sticky="ew")
 
+        ctk.CTkLabel(
+            frame_funcionarios,
+            text=status
+        ).grid(row=1, column=3, pady=8, padx=10, sticky="ew")
 
+        edit_funcionario = ctk.CTkButton(
+            frame_funcionarios,
+            text="Editar",
+            fg_color=COR_AZUL,
+            hover_color=HOVER_AZUL,
+            font=("Segoe UI Semibold", 10,),
+            width=30,
+            height=20
+        )
+        edit_funcionario.grid(row=1,column=4, padx=10)
+
+        delete_funcionario = ctk.CTkButton(
+            frame_funcionarios,
+            text="Excluir",
+            fg_color=COR_VERMELHO,
+            hover_color=HOVER_VERMELHO,
+            font=("Segoe UI Semibold", 10),
+            width=30,
+            height=20
+        )
+        delete_funcionario.grid(row=1,column=5)
 
     #endregion
+
+
 
