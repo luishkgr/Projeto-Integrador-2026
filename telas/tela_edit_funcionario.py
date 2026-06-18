@@ -1,7 +1,9 @@
 import customtkinter as ctk
+from componentes import *
+import sqlite3
 
 
-def mostrar_inicio(frame_conteudo):
+def montar_tela_edit_funcionario(frame_conteudo):
     for widget in frame_conteudo.winfo_children():
         widget.destroy()
 
@@ -11,9 +13,8 @@ def mostrar_inicio(frame_conteudo):
 
     titulo = ctk.CTkLabel(
         frame_conteudo,
-        text="Início",
+        text="EDITAR FUNCIONÁRIO",
         font=("Segoe UI Semibold", 32),
-        text_color="#0B2A6F")
-    titulo.grid(row=0, column=0, columnspan=3, pady=(60, 20))
-    
-    
+        text_color="#0B2A6F"
+    )
+    titulo.grid(row=0, column=0, columnspan=3, pady=(30, 10))

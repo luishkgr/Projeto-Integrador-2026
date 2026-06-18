@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from componentes import *
 import sqlite3
+import tela_add_funcionario
 
 #region FUNÇÕES
 def busca_funci():
@@ -39,7 +40,7 @@ def montar_tela_funcionarios(frame_conteudo):
     btn_add = botao_verde(
         frame_conteudo,
         "Adicionar funcionário +",
-        comando=lambda: print("Função em desenvolvimento"),
+        comando=lambda: tela_add_funcionario.montar_tela_add_funcionario(frame_conteudo),
     )
     btn_add.grid(row=1,column=0, sticky="w", padx=80)
 

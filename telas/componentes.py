@@ -51,3 +51,16 @@ def botao_vermelho(master, texto, comando=None):
         width=150,
         height=40,
     )
+
+def botao_salvar(master, texto, comando=None):
+    return ctk.CTkButton(
+        master,
+        text=texto,
+        command=comando,
+        font=("Segoe UI", 15, "bold"),
+        text_color=COR_BRANCO,
+        fg_color=COR_VERDE,
+        hover_color=HOVER_VERDE,
+        width=150,
+        height=40
+    )
