@@ -5,7 +5,7 @@ from telas.login import montar_tela_login
 import bancodedados.banco as bd
 
 
-janela_login = ctk.CTk()
+app = ctk.CTk()
 bd.inicializar_db()
-montar_tela_login()
-janela_login.mainloop()
+montar_tela_login(app)
+app.mainloop()

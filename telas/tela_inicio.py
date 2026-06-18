@@ -14,5 +14,6 @@ def mostrar_inicio(frame_conteudo):
         text="Início",
         font=("Segoe UI Semibold", 32),
         text_color="#0B2A6F")
+    titulo.grid(row=0, column=0, columnspan=3, pady=(60, 20))
     
     

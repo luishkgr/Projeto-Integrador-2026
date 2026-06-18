@@ -57,7 +57,7 @@ def botao_salvar(master, texto, comando=None):
         master,
         text=texto,
         command=comando,
-        font=("Segoe UI Semibold", 12),
+        font=("Segoe UI", 15, "bold"),
         text_color=COR_BRANCO,
         fg_color=COR_VERDE,
         hover_color=HOVER_VERDE,
