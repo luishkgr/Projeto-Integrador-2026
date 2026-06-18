@@ -1,6 +1,22 @@
 import customtkinter as ctk
+from componentes import *
+import sqlite3
+
+#region FUNÇÕES
+def busca_funci():
+    conexao = sqlite3.connect("bancodedados.db")
+    cursor = conexao.cursor()
+    cursor.execute("SELECT * FROM profissional")
+    dados = cursor.fetchall()
+    print(dados)
+    conexao.close()
 
 
+
+#endregion
+
+
+#region config tela
 def mostrar_funcionarios(frame_conteudo):
     for widget in frame_conteudo.winfo_children():
         widget.destroy()
@@ -11,55 +27,107 @@ def mostrar_funcionarios(frame_conteudo):
 
     titulo = ctk.CTkLabel(
         frame_conteudo,
-        text="Funcionarios",
+        text="FUNCIONÁRIOS",
         font=("Segoe UI Semibold", 32),
         text_color="#0B2A6F"
     )
-    titulo.grid(row=0, column=0, columnspan=3, pady=(60, 20))
+    titulo.grid(row=0, column=0, columnspan=3, pady=(30, 10))
 
+    #endregion
 
-    funcionarios =ctk.CTkFrame(
+    #region botões
+
+    btn_add = botao_verde(
         frame_conteudo,
+        "Adicionar funcionário +",
+        comando=lambda: print("Função em desenvolvimento"),
+    )
+    btn_add.grid(row=1,column=0, sticky="w", padx=100)
+
+    frame_botoes = ctk.CTkFrame(
+    frame_conteudo,
+    fg_color="transparent"
+)
+    frame_botoes.grid(row=3, column=0, columnspan=3, pady=10)
+
+    btn_edit = botao_azul(
+        frame_botoes,
+        "Editar funcionário",
+        comando=lambda: print("Função em desenvolvimento"),
+    )
+    btn_edit.grid(row=0, column=0, padx=50)
+
+    btn_del = botao_vermelho(
+        frame_botoes,
+        "Excluir funcionário",
+        comando=lambda: print("Função em desenvolvimento")
+    )
+    btn_del.grid(row=0, column=1, padx=50)
+
+    #endregion
+
+    #region info funcionários
+
+    frame_info_funci = ctk.CTkFrame(
+        frame_conteudo
+    )
+    frame_info_funci.grid(row=2, column=0, columnspan=3, pady=(10,30))
+    
+    frame_funcionarios = ctk.CTkScrollableFrame(
+        frame_info_funci,
         border_width=1,
         corner_radius=3,
-        width=800,
-        height=350,
+        width=750,
+        height=400,
         border_color="#000000"
     )
-    funcionarios.grid(row=1, column=0, columnspan=3, pady=30)
+    frame_funcionarios.grid(row=0, column=0)
+    frame_funcionarios.grid_columnconfigure(0, weight=1)
+    frame_funcionarios.grid_columnconfigure(1, weight=4)
+    frame_funcionarios.grid_columnconfigure(2, weight=3)
+    frame_funcionarios.grid_columnconfigure(3, weight=2)
 
-    btn_add = ctk.CTkButton(
-        frame_conteudo,
-        text="Adicionar Funcionário +",
-        font=("Segoe UI Semibold", 14),
-        text_color="#ffffff",
-        width=150,
-        hover_color="#2aa04d",
-        height=40,
-        fg_color="#30b457"
+    label_id = ctk.CTkLabel(
+        frame_funcionarios,
+        text="ID",
+        font=("Segoe UI Semibold", 14)
     )
-    btn_add.grid(row=0, column=2, pady=(60, 20), sticky="e", padx=30)
+    label_id.grid(row=0, column=0,pady=10, padx=10, sticky="ew")
 
-    btn_edit = ctk.CTkButton(
-        frame_conteudo,
-        text="Editar",
-        font=("Segoe UI Semibold", 15),
-        hover_color="#343ec9",
-        text_color="#ffffff",
-        width=150,
-        height=40,
-        fg_color="#3c48eb"
+    label_nome = ctk.CTkLabel(
+        frame_funcionarios,
+        text="Nome",
+        font=("Segoe UI Semibold", 14)
     )
-    btn_edit.grid(row=2, column=0, columnspan=2, padx=(200,10))
+    label_nome.grid(row=0, column=1,pady=10, padx=10, sticky="ew")
 
-    btn_delete = ctk.CTkButton(
-        frame_conteudo,
-        text="Excluir",
-        font=("Segoe UI Semibold", 15),
-        text_color="#ffffff",
-        width=150,
-        height=40,
-        fg_color="#f31c1c",
-        hover_color="#f13535"
+    label_cargo = ctk.CTkLabel(
+        frame_funcionarios,
+        text="Cargo",
+        font=("Segoe UI Semibold", 14)
     )
-    btn_delete.grid(row=2, column=1,columnspan=3, padx=10)
+    label_cargo.grid(row=0, column=2,pady=10, padx=10, sticky="ew")
+
+    label_status = ctk.CTkLabel(
+        frame_funcionarios,
+        text="Status",
+        font=("Segoe UI Semibold", 14)
+    )
+    label_status.grid(row=0, column=3,pady=10, padx=10, sticky="ew")
+
+    linha = ctk.CTkFrame(
+        frame_funcionarios,
+        height=2,
+        fg_color="#adadad",
+    )
+    linha.grid(row=1, column=0, columnspan=4, sticky="ew", padx=10)
+
+
+
+
+
+
+
+
+    #endregion
+
