@@ -29,8 +29,11 @@ def montar_tela_add_funcionario(frame_conteudo):
         corner_radius=4,
         fg_color=COR_BRANCO
     )
-    frame_add_funcionario.grid(row=1, column=0, columnspan=3)
+    frame_add_funcionario.grid(row=1, column=0, columnspan=3, pady=20)
     frame_add_funcionario.grid_propagate(False)
+
+    frame_add_funcionario.grid_columnconfigure(0, weight=1)
+    frame_add_funcionario.grid_columnconfigure(1, weight=1)
 
 #endregion
 
@@ -42,18 +45,19 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI Semibold", 15),
         text_color=COR_PRETO,
     )
-    labela_nome.grid(row=0, column=0, pady=(50,0), padx=100)
+    labela_nome.grid(row=0, column=0, pady=(50,0))
 
     entry_nome = ctk.CTkEntry(
         frame_add_funcionario,
         width=220,
         height=25,
+        placeholder_text="Digite o nome",
         border_width=1,
         corner_radius=3,
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    entry_nome.grid(row=1, column=0, pady=10, padx=100)
+    entry_nome.grid(row=1, column=0, pady=10)
 
     #endregion
 
@@ -64,7 +68,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         text="Cargo",
         font=("Segoe UI Semibold", 15),
     )
-    label_cargo.grid(row=0, column=1, pady=(50,0), padx=70)
+    label_cargo.grid(row=0, column=1, pady=(50,0))
 
     combo_cargo = ctk.CTkComboBox(
         frame_add_funcionario,
@@ -75,11 +79,11 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    combo_cargo.grid(row=1, column=1,pady=5, padx=70)
+    combo_cargo.grid(row=1, column=1, pady=10)
 
     #endregion
 
-    #region REgistro profissional
+    #region registro profissional
 
     label_registro = ctk.CTkLabel(
         frame_add_funcionario,
@@ -87,18 +91,19 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI Semibold", 15),
         text_color=COR_PRETO,
     )
-    label_registro.grid(row=2, column=0, pady=(30,5), padx=100)
+    label_registro.grid(row=2, column=0, pady=(30,5))
 
     entry_registro = ctk.CTkEntry(
         frame_add_funcionario,
         width=220,
         height=25,
+        placeholder_text="Ex: CRM 12345",
         border_width=1,
         corner_radius=3,
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    entry_registro.grid(row=3, column=0, pady=5, padx=100)
+    entry_registro.grid(row=3, column=0, pady=5)
 
     #endregion
 
@@ -110,18 +115,19 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI Semibold", 15),
         text_color=COR_PRETO,
     )
-    label_telefone.grid(row=2, column=1,pady=(30,0))
+    label_telefone.grid(row=2, column=1, pady=(30,5))
 
     entry_telefone = ctk.CTkEntry(
         frame_add_funcionario,
         width=220,
         height=25,
         border_width=1,
+        placeholder_text="(00) 00000-0000)",
         corner_radius=3,
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    entry_telefone.grid(row=3, column=1,pady=5, padx=70)
+    entry_telefone.grid(row=3, column=1, pady=5)
 
     #endregion
 
@@ -133,18 +139,19 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI Semibold", 15),
         text_color=COR_PRETO,
     )
-    label_email.grid(row=4, column=0, pady=(30,5), padx=100)
+    label_email.grid(row=4, column=0, pady=(30,5))
 
     entry_email = ctk.CTkEntry(
         frame_add_funcionario,
         width=220,
         height=25,
+        placeholder_text="email@empresa.com",
         border_width=1,
         corner_radius=3,
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    entry_email.grid(row=5, column=0, pady=5, padx=100)
+    entry_email.grid(row=5, column=0, pady=5)
 
     #endregion
 
@@ -152,10 +159,10 @@ def montar_tela_add_funcionario(frame_conteudo):
 
     label_status = ctk.CTkLabel(
         frame_add_funcionario,
-        text="Cargo",
+        text="Status",
         font=("Segoe UI Semibold", 15),
     )
-    label_status.grid(row=4, column=1, pady=(50,0), padx=70)
+    label_status.grid(row=4, column=1, pady=(30,5))
 
     combo_status = ctk.CTkComboBox(
         frame_add_funcionario,
@@ -166,23 +173,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    combo_status.grid(row=5, column=1,pady=5, padx=70)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    combo_status.grid(row=5, column=1, pady=5)
 
     #endregion
 
@@ -193,17 +184,6 @@ def montar_tela_add_funcionario(frame_conteudo):
         "Salvar",
     )
     btn_salvar.grid(row=6, column=0, columnspan=2, pady=40)
-
-
-
-
-
-    #endregion
-
-
-
-
-
 
     #endregion
 

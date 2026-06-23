@@ -11,6 +11,14 @@ COR_VERMELHO = "#f31c1c"
 HOVER_VERMELHO = "#f13535"
 COR_BRANCO = "#fff"
 COR_PRETO = "#000"
+COR_CINZA = "#d3d3d3"
+COR_AZUL_FUNDO ="#EAF1FF"
+COR_VERDE_FUNDO ="#E7F8EE"
+COR_ROXO_FUNDO ="#F2EAFB"
+COR_ROXO = "#9333EA"
+COR_LARANJA = "#F59E0B"
+COR_LARANJA_FUNDO = "#FEF3E2"
+COR_FUNDO_VERMELHO = "#FEE2E2"
 
 def botao_azul(master, texto, comando=None):
     return ctk.CTkButton(

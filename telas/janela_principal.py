@@ -7,6 +7,8 @@ import tela_plantoes
 import tela_funcionarios
 import tela_relatorios
 import tela_usuarios
+from componentes import *
+from datetime import datetime
 
 #region config tela
 
@@ -38,7 +40,7 @@ janela_princpal.geometry(f"{largura}x{altura}+{x}+{y}")
 
 menu_topo = ctk.CTkFrame(
     janela_princpal,
-    height=120,
+    height=140,
     fg_color="#ffffff",
     corner_radius=0
     
@@ -98,7 +100,7 @@ label_titulo.grid(row=0, column=1, padx=0, pady=20, sticky="w")
 linha = ctk.CTkFrame(
     menu_lateral,
     height=2,
-    fg_color="#1A3F85"  # azul um pouco mais claro
+    fg_color="#1A3F85"  
 )
 
 linha.grid(row=1, column=0, columnspan=2, sticky="ew", padx=15, pady=(10, 5))
@@ -421,6 +423,62 @@ label_version = ctk.CTkLabel(
 label_version.grid(row=0, column=0)
     #endregion
 
+#endregion
+
+#region menu topo
+
+    #region data/hora
+
+frame_data_hora = ctk.CTkFrame(
+    menu_topo,
+    width=200,
+    height=68,
+    border_width=2,
+    border_color=COR_CINZA,
+    corner_radius=4,
+    fg_color=COR_BRANCO
+)
+frame_data_hora.grid(row=0, column=0, sticky="w", pady=1, padx=1)
+frame_data_hora.grid_propagate(False)
+
+label_data = ctk.CTkLabel(
+    frame_data_hora,
+    text="",
+    text_color=COR_PRETO,
+    font=("Segoe UI", 13)
+)
+label_data.grid(row=0, column=0, sticky="w",padx=40, pady=(5,0))
+
+label_hora = ctk.CTkLabel(
+    frame_data_hora,
+    text="",
+    text_color=COR_PRINCIPAL,
+    font=("Segoe UI", 16, "bold"),
+)
+label_hora.grid(row=1, column=0, sticky="w",padx=65,)
+
+meses = [
+    "janeiro", "fevereiro", "março", "abril",
+    "maio", "junho", "julho", "agosto",
+    "setembro", "outubro", "novembro", "dezembro"
+]
+
+def atualizar_data_hora():
+    agora = datetime.now()
+
+    data = f"{agora.day} de {meses[agora.month - 1]} de {agora.year}"
+    hora = agora.strftime("%H:%M:%S")
+
+    label_data.configure(text=data)
+    label_hora.configure(text=hora)
+
+    label_hora.after(1000, atualizar_data_hora)
+
+atualizar_data_hora()
+
+    #endregion
+
+
     #region notificações
 
 imagem_notificacao = Image.open("telas/img/notifications.png")
@@ -450,7 +508,7 @@ linha = ctk.CTkFrame(
     menu_topo,
     width=2,
     height=30,
-    fg_color="#e2e2e2"  # azul um pouco mais claro
+    fg_color= COR_CINZA
 )
 
 linha.grid(row=0, column=2, padx=15, pady=10)
