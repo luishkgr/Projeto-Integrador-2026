@@ -1,7 +1,8 @@
+import os
 import sqlite3
 import bancodedados.script_banco as script_banco
 
-DB_NAME = "./bancodedados/banco.db"
+DB_NAME = os.path.join(os.path.dirname(__file__), "banco.db")
 
 def conectar():
     return sqlite3.connect(DB_NAME)
@@ -16,25 +17,31 @@ def inicializar_db():
     cursor.execute(script_banco.table_escala)
 
     conn.commit()
+
+def validar_usuario(login, senha):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT id, nome, login, senha FROM usuario WHERE login = ?",
+        (login.strip(),)
+    )
+    resultado = cursor.fetchone()
+    print("validar_usuario:", repr(login.strip()), "resultado:", resultado)
+    conn.close()
+
+    return bool(resultado and resultado[3] == senha.strip())
     
 # CRUD
-
 # CREATE - INSERT
-
 # READ - SELECT
-
 # UPDATE - UPDATE
-
 # DELETE - DELETE
- 
+
 #cadastro
  
 def cadastro_usuario(nome, login, senha):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
                     INSERT INTO usuario (nome, login, senha) VALUES (?, ?, ?)
@@ -42,15 +49,11 @@ def cadastro_usuario(nome, login, senha):
                    """, (nome, login, senha,))
 
     conn.commit()
-
     conn.close()
  
 def cadastro_setor(nome, descricao):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
                     INSERT INTO setor (nome, descricao) VALUES (?, ?)
@@ -58,29 +61,22 @@ def cadastro_setor(nome, descricao):
                    """, (nome, descricao,))
 
     conn.commit()
-
     conn.close()
  
 def cadastro_profissional(nome, cargo, registro_profissional, fone, email):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                    INSERT INTO profissional (nome, cargo, status, registro_profissional, fone, email) VALUES (?, ?, "ativo", ?,?,?)
+                    INSERT INTO profissional (nome, cargo, status, registro_profissional, fone, email) VALUES (?, ?, "Ativo", ?,?,?)
 
                    """, (nome, cargo, registro_profissional, fone, email,))
 
     conn.commit()
-
     conn.close()
  
 def cadastro_plantao(setor_id, data, hora_inicio, hora_fim, quantidade_profissionais):
-
     conn = conectar()
-
     cursor = conn.cursor()
 
     cursor.execute( """
@@ -90,15 +86,11 @@ def cadastro_plantao(setor_id, data, hora_inicio, hora_fim, quantidade_profissio
                    """, (setor_id, data, hora_inicio, hora_fim, quantidade_profissionais,))
 
     conn.commit()
-
     conn.close()
  
 def cadastro_escala(profissional_id, plantao_id, status, data_alocacao, observacao):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
                     INSERT INTO escala (profissional_id, plantao_id, status, data_alocacao, observacao) VALUES (?, ?, ?, ?, ?)
@@ -106,7 +98,6 @@ def cadastro_escala(profissional_id, plantao_id, status, data_alocacao, observac
                    """, (profissional_id, plantao_id, status, data_alocacao, observacao,))
 
     conn.commit()
-
     conn.close()
  
 #====================================================================================================================================
@@ -114,46 +105,35 @@ def cadastro_escala(profissional_id, plantao_id, status, data_alocacao, observac
 #consultar
  
 def consultar_usuario(usuario_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                   SELECT * FROM usuario WHERE usuario_id = ?
+                   SELECT * FROM usuario WHERE id = ?
 
                    """, (usuario_id,))
 
     conn.commit()
-
     conn.close()
  
 def consultar_setor(setor_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                    SELECT * FROM setor WHERE setor_id = ?
+                    SELECT * FROM setor WHERE id = ?
 
                    """, (setor_id,))
 
     conn.commit()
-
     conn.close()
  
 def consultar_profissional(profissional_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                    SELECT * FROM profissional WHERE profissional_id = ?
+                    SELECT * FROM profissional WHERE id = ?
 
                    """, (profissional_id,))
 
@@ -168,35 +148,27 @@ def consultar_profissional(profissional_id):
     
  
 def consultar_plantao(plantao_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                    SELECT * FROM plantao WHERE plantao_id = ?
+                    SELECT * FROM plantao WHERE id = ?
 
                    """, (plantao_id,))
 
     conn.commit()
-
     conn.close()
- 
+
 def consultar_escala(escala_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                    SELECT * FROM escala WHERE escala_id = ?
+                    SELECT * FROM escala WHERE id = ?
 
                    """, (escala_id,))
 
     conn.commit()
-
     conn.close()
  
 #====================================================================================================================================
@@ -204,83 +176,63 @@ def consultar_escala(escala_id):
 #atualizar
  
 def atualizar_usuario(usuario_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                   UPDATE usuario SET (nome, login, senha) = (?,?,?) WHERE usuario_id = ?
+                   UPDATE usuario SET (nome, login, senha) = (?,?,?) WHERE id = ?
 
                    """, (usuario_id,))
 
     conn.commit()
-
     conn.close()
  
 def atualizar_setor(setor_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                    UPDATE setor SET (nome, descricao) = (?,?) WHERE setor_id = ?
+                    UPDATE setor SET (nome, descricao) = (?,?) WHERE id = ?
 
                    """, (setor_id,))
 
     conn.commit()
-
     conn.close()
  
 def atualizar_profissional(profissional_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                     UPDATE profissional SET (nome, cargo, status, registro_profissional, fone, email) = (?,?,?,?,?,?) WHERE profissional_id = ?
+                     UPDATE profissional SET (nome, cargo, status, registro_profissional, fone, email) = (?,?,?,?,?,?) WHERE id = ?
 
                    """, (profissional_id,))
 
     conn.commit()
-
     conn.close()
  
 def atualizar_plantao(plantao_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                    UPDATE plantao SET (data, hora_inicio, hora_fim, quantidade_profissionais) = (?,?,?,?) WHERE plantao_id = ?
+                    UPDATE plantao SET (data, hora_inicio, hora_fim, quantidade_profissionais) = (?,?,?,?) WHERE id = ?
 
                    """, (plantao_id,))
 
     conn.commit()
-
     conn.close()
  
 def atualizar_escala(escala_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                     UPDATE escala SET (plantao_id, status, data_alocacao, observacao) = (?,?,?,?,?) WHERE escala_id = ?
+                     UPDATE escala SET (plantao_id, status, data_alocacao, observacao) = (?,?,?,?,?) WHERE id = ?
 
                    """, (escala_id,))
 
     conn.commit()
-
     conn.close()
  
 #====================================================================================================================================
@@ -288,43 +240,32 @@ def atualizar_escala(escala_id):
 #deletar
  
 def delete_usuario(usuario_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                   DELETE FROM usuario WHERE usuario_id = ?
+                   DELETE FROM usuario WHERE id = ?
 
                    """, (usuario_id,))
 
     conn.commit()
-
     conn.close()
  
 def delete_setor(setor_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                   DELETE FROM setor WHERE setor_id = ?
+                   DELETE FROM setor WHERE id = ?
 
                    """, (setor_id,))
 
     conn.commit()
-
     conn.close()
  
 def delete_profissional(profissional_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
                      DELETE FROM profissional WHERE id = ?
@@ -332,39 +273,29 @@ def delete_profissional(profissional_id):
                    """, (profissional_id,))
 
     conn.commit()
-
     conn.close()
  
 def delete_plantao(plantao_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                    DELETE FROM plantao WHERE plantao_id = ?
+                    DELETE FROM plantao WHERE id = ?
 
                    """, (plantao_id,))
 
     conn.commit()
-
     conn.close()
  
 def delete_escala(escala_id):
-
     conn = conectar()
-
     cursor = conn.cursor()
-
     cursor.execute( """
 
-                     DELETE FROM escala WHERE escala_id = ?
+                     DELETE FROM escala WHERE id = ?
 
                    """, (escala_id,))
 
     conn.commit()
-
     conn.close()
 
- 

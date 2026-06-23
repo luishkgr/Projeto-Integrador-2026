@@ -7,9 +7,11 @@ import bancodedados.banco as bd
 from telas.componentes import *
 from utilidades.util import validar_login
 
+def login_valido():
+    montar_tela_principal(app)
+
 app = ctk.CTk()
 bd.inicializar_db()
-montar_tela_login(app)
-# montar_tela_login(app)
+montar_tela_login(app, login_valido)
 
 app.mainloop()
