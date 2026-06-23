@@ -4,7 +4,7 @@ from CTkMessagebox import CTkMessagebox
 
 def montar_tela_login(container):
 
-    ##region configuração da tela
+    #region configuração da tela
     container.title("Sistema de Horários e Escala de Plantão")
     container.geometry("1200x700")
     container.resizable(False, False)
@@ -25,7 +25,7 @@ def montar_tela_login(container):
 
     #endregion
 
-        #region imagem lado equerdo
+    #region imagem lado equerdo
 
     frame_esquerdo = ctk.CTkFrame(
         master=container,
@@ -53,7 +53,7 @@ def montar_tela_login(container):
 
     #endregion
 
-        #region config lado direito
+    #region config lado direito
 
     frame_direito = ctk.CTkFrame(
         master=container,
@@ -75,7 +75,7 @@ def montar_tela_login(container):
 
     #endregion
 
-        #region cabeçalho
+    #region cabeçalho
     icone = Image.open("telas/img/icone_user.png")
 
     imagem_icone = ctk.CTkImage(
@@ -110,7 +110,7 @@ def montar_tela_login(container):
 
     #endregion
 
-        #region usuario
+    #region usuario
 
     usuario = ctk.CTkFrame(
         frame_login,
@@ -167,7 +167,7 @@ def montar_tela_login(container):
 
         #endregion
 
-        #region senha
+    #region senha
 
     senha = ctk.CTkFrame(
         frame_login,
@@ -234,7 +234,7 @@ def montar_tela_login(container):
     senha_visivel = False
 
     def mostrar_senha():
-        global senha_visivel
+        nonlocal senha_visivel
 
         if senha_visivel:
             entry_senha.configure(show="*")
@@ -261,7 +261,7 @@ def montar_tela_login(container):
 
         #endregion
 
-        #region esqueceu a senha
+    #region esqueceu a senha
 
     esq_senha = ctk.CTkFrame(
         frame_login,
@@ -295,7 +295,7 @@ def montar_tela_login(container):
 
         #endregion
 
-        #region botão entrar
+    #region botão entrar
 
     entrar = ctk.CTkFrame(
         frame_login,
@@ -348,7 +348,7 @@ def montar_tela_login(container):
 
         #endregion
 
-        #region rodapé
+    #region rodapé
 
     rodape = ctk.CTkFrame(
         frame_direito,

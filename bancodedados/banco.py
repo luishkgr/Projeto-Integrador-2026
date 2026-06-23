@@ -17,3 +17,21 @@ def inicializar_db():
 
     conn.commit()
     
+# CRUD
+
+# CREATE - INSERT
+# READ - SELECT
+# UPDATE - UPDATE
+# DELETE - DELETE
+
+def cadastro_profissional(nome, cargo, registro_profissional, fone, email):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute( """
+                    INSERT INTO profissional (nome, cargo, status, registro_profissional, fone, email) VALUES (?, ?, "ativo", ?,?,?)
+                   """, (nome, cargo, registro_profissional, fone, email,))
+    conn.commit()
+    conn.close()
+
+
+
