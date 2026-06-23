@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from componentes import *
 import sqlite3
-
+from telas.componentes import *
 #region config tela
 
 def montar_tela_editar_funcionario(frame_conteudo, id_funcionario):

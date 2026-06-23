@@ -1,6 +1,10 @@
 import customtkinter as ctk
 from PIL import Image
 from CTkMessagebox import CTkMessagebox
+import sqlite3
+from telas.componentes import *
+
+from telas import janela_principal
 
 def montar_tela_login(container):
 
@@ -23,6 +27,41 @@ def montar_tela_login(container):
 
     container.geometry(f"{largura}x{altura}+{x}+{y}")
 
+    def validar_login(usuario, senha):
+        if usuario == "" or senha == "":
+            CTkMessagebox(
+                title="Erro",
+                message="Preencha usuário e senha!",
+                icon="cancel"
+            )
+            return
+
+        conexao = sqlite3.connect("bancodedados/banco.db")
+        cursor = conexao.cursor()
+
+        cursor.execute(
+            "SELECT * FROM usuario WHERE login = ? AND senha = ?",
+            (usuario, senha)
+        )
+
+        usuario_encontrado = cursor.fetchone()
+        conexao.close()
+
+        if usuario_encontrado:
+            CTkMessagebox(
+                title="Sucesso",
+                message="Login realizado com sucesso!",
+                icon="check"
+            )
+
+            janela_principal.criar_janela_principal()
+        else:
+            CTkMessagebox(
+                title="Erro",
+                message="Usuário ou senha incorretos!",
+                icon="cancel"
+            )
+        
     #endregion
 
     #region imagem lado equerdo
@@ -329,9 +368,9 @@ def montar_tela_login(container):
         frame_entrar,
         fg_color="#0649bc",
         hover_color="#053A96",
-        command= lambda: login(
-            entry_senha.get(),
-            entry_usuario.get()
+        command=lambda: validar_login(
+        entry_usuario.get(),
+        entry_senha.get()
         ),
         text="  Entrar",
         text_color="white",

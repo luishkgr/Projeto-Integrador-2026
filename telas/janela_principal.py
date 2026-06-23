@@ -1,13 +1,13 @@
 import customtkinter as ctk
 from PIL import Image
 from CTkMessagebox import CTkMessagebox
-import tela_inicio
-import tela_escalas
-import tela_plantoes
-import tela_funcionarios
-import tela_relatorios
-import tela_usuarios
-from componentes import *
+from telas import tela_inicio
+from telas import tela_escalas
+from telas import tela_plantoes
+from telas import tela_funcionarios
+from telas import tela_relatorios
+from telas import tela_usuarios
+from telas.componentes import *
 from datetime import datetime
 
 #region config tela

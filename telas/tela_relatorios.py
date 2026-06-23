@@ -1,5 +1,5 @@
 import customtkinter as ctk
-
+from telas.componentes import *
 
 def mostrar_relatorios(frame_conteudo):
     for widget in frame_conteudo.winfo_children():

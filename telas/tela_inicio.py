@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from componentes import *
+from telas.componentes import *
 from PIL import Image
 from datetime import datetime
 
@@ -37,6 +37,16 @@ def mostrar_inicio(frame_conteudo):
     frame_cards.grid_columnconfigure(1, weight=1)
     frame_cards.grid_columnconfigure(2, weight=1)
     frame_cards.grid_columnconfigure(3, weight=1)
+
+    frame_proximos_plantoes = ctk.CTkFrame(
+        frame_conteudo,
+        fg_color=COR_VERMELHO,
+        corner_radius=15,
+        height=360,
+        border_width=2,
+        border_color=COR_CINZA,
+    )
+    frame_proximos_plantoes.grid(row=2, column=0, columnspan=1, sticky="ew",pady=10, padx=15)
 
 
 
@@ -230,7 +240,7 @@ def mostrar_inicio(frame_conteudo):
 
     #endregion
 
-    #region pendencias
+    #region card pendencias
 
     frame_card_pendencias = ctk.CTkFrame(
         frame_cards,
