@@ -1,7 +1,8 @@
 import customtkinter as ctk
 from .componentes import *
 import sqlite3
-from telas.componentes import *
+from .tela_funcionarios import *
+from bancodedados.banco import cadastro_profissional
 
 #region config tela
 
@@ -38,6 +39,19 @@ def montar_tela_add_funcionario(frame_conteudo):
 
 #endregion
 
+    '''#region botao voltar
+
+    ctk.CTkButton(
+        frame_add_funcionario,
+        text="<--Voltar",
+        font=("Segoe UI Semibold", 12),
+        fg_color=COR_AZUL,
+        hover_color=HOVER_AZUL,
+        command=lambda: montar_tela_funcionarios(frame_conteudo)
+    ).grid(row=0, column=0, sticky="w", padx=20, pady=20)
+
+    #endregion'''
+
     #region add nome
 
     labela_nome = ctk.CTkLabel(
@@ -46,7 +60,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI Semibold", 15),
         text_color=COR_PRETO,
     )
-    labela_nome.grid(row=0, column=0, pady=(50,0))
+    labela_nome.grid(row=1, column=0, pady=(50,0))
 
     entry_nome = ctk.CTkEntry(
         frame_add_funcionario,
@@ -58,7 +72,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    entry_nome.grid(row=1, column=0, pady=10)
+    entry_nome.grid(row=2, column=0, pady=10)
 
     #endregion
 
@@ -69,7 +83,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         text="Cargo",
         font=("Segoe UI Semibold", 15),
     )
-    label_cargo.grid(row=0, column=1, pady=(50,0))
+    label_cargo.grid(row=1, column=1, pady=(50,0))
 
     combo_cargo = ctk.CTkComboBox(
         frame_add_funcionario,
@@ -80,7 +94,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    combo_cargo.grid(row=1, column=1, pady=10)
+    combo_cargo.grid(row=2, column=1, pady=10)
 
     #endregion
 
@@ -92,7 +106,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI Semibold", 15),
         text_color=COR_PRETO,
     )
-    label_registro.grid(row=2, column=0, pady=(30,5))
+    label_registro.grid(row=3, column=0, pady=(30,5))
 
     entry_registro = ctk.CTkEntry(
         frame_add_funcionario,
@@ -104,7 +118,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    entry_registro.grid(row=3, column=0, pady=5)
+    entry_registro.grid(row=4, column=0, pady=5)
 
     #endregion
 
@@ -116,7 +130,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI Semibold", 15),
         text_color=COR_PRETO,
     )
-    label_telefone.grid(row=2, column=1, pady=(30,5))
+    label_telefone.grid(row=3, column=1, pady=(30,5))
 
     entry_telefone = ctk.CTkEntry(
         frame_add_funcionario,
@@ -128,7 +142,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    entry_telefone.grid(row=3, column=1, pady=5)
+    entry_telefone.grid(row=4, column=1, pady=5)
 
     #endregion
 
@@ -140,7 +154,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI Semibold", 15),
         text_color=COR_PRETO,
     )
-    label_email.grid(row=4, column=0, pady=(30,5))
+    label_email.grid(row=5, column=0, pady=(30,5))
 
     entry_email = ctk.CTkEntry(
         frame_add_funcionario,
@@ -152,7 +166,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    entry_email.grid(row=5, column=0, pady=5)
+    entry_email.grid(row=6, column=0, pady=5)
 
     #endregion
 
@@ -163,7 +177,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         text="Status",
         font=("Segoe UI Semibold", 15),
     )
-    label_status.grid(row=4, column=1, pady=(30,5))
+    label_status.grid(row=5, column=1, pady=(30,5))
 
     combo_status = ctk.CTkComboBox(
         frame_add_funcionario,
@@ -174,8 +188,18 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    combo_status.grid(row=5, column=1, pady=5)
+    combo_status.grid(row=6, column=1, pady=5)
 
+    #endregion
+    
+    #region gets entry
+    def salvar_profissional():
+        nome = entry_nome.get()
+        cargo = combo_cargo.get()
+        registro = entry_registro.get()
+        fone = entry_telefone.get()
+        email = entry_email.get()
+        cadastro_profissional(nome, cargo, registro, fone, email)
     #endregion
 
     #region botão salvar
@@ -183,8 +207,9 @@ def montar_tela_add_funcionario(frame_conteudo):
     btn_salvar = botao_salvar(
         frame_add_funcionario,
         "Salvar",
+        salvar_profissional
     )
-    btn_salvar.grid(row=6, column=0, columnspan=2, pady=40)
+    btn_salvar.grid(row=7, column=0, columnspan=2, pady=40)
 
     #endregion
 

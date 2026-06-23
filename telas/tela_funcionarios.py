@@ -3,6 +3,8 @@ from .componentes import *
 import sqlite3
 from .tela_add_funcionario import montar_tela_add_funcionario
 from .tela_edit_funcionario import montar_tela_editar_funcionario
+from CTkMessagebox import CTkMessagebox
+from bancodedados.banco import delete_profissional
 
 funcionario_selecionado = {"id": None}
 linha_selecionada = {"labels": None}
@@ -29,6 +31,28 @@ def busca_funci():
     dados = cursor.fetchall()
     conexao.close()
     return dados
+
+
+def confirmar_exclusao(id_funcionario):
+    msg = CTkMessagebox(
+        title="Confirmar exclusão",
+        message="Deseja realmente excluir este funcionário?",
+        icon="question",
+        option_1="Não",
+        option_2="Sim"
+    )
+
+    resposta = msg.get()
+
+    if resposta == "Sim":
+        print("Excluindo:", id_funcionario)
+
+
+        CTkMessagebox(
+            title="Sucesso",
+            message="Funcionário excluído com sucesso!",
+            icon="check"
+        )
 
 #endregion
 
@@ -209,7 +233,7 @@ def montar_tela_funcionarios(frame_conteudo):
             font=("Segoe UI Semibold", 11),
             fg_color=COR_VERMELHO,
             hover_color=HOVER_VERMELHO,
-            command=lambda id_func=id_funcionario: print("Excluir:", id_func)
+            command=lambda id_func=id_funcionario: confirmar_exclusao(id_func)
         )
         btn_excluir.grid(row=0, column=1)
 

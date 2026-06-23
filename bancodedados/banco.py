@@ -124,7 +124,14 @@ def consultar_profissional(profissional_id):
                    """, (profissional_id,))
 
     conn.commit()
+
+    dados = cursor.fetchall()
+
     conn.close()
+
+    return dados
+    
+    
  
 def consultar_plantao(plantao_id):
     conn = conectar()
