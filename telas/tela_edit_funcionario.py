@@ -80,6 +80,7 @@ def montar_tela_editar_funcionario(frame_conteudo, id_funcionario):
         text_color=COR_PRETO
     )
     combo_cargo.grid(row=1, column=1, pady=10)
+    combo_cargo.configure(state="readonly")
 
     #endregion
 
@@ -174,6 +175,7 @@ def montar_tela_editar_funcionario(frame_conteudo, id_funcionario):
         text_color=COR_PRETO
     )
     combo_status.grid(row=5, column=1, pady=5)
+    combo_status.configure(state="readonly")
 
     #endregion
 

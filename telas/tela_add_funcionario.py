@@ -95,6 +95,18 @@ def montar_tela_add_funcionario(frame_conteudo):
         text_color=COR_PRETO
     )
     combo_cargo.grid(row=2, column=1, pady=10)
+    combo_cargo.configure(state="readonly")
+
+    btn_add_cargo = ctk.CTkButton(
+        frame_add_funcionario,
+        text="+",
+        font=("Segoe UI", 15, "bold"),
+        width=50, 
+        height=25,
+        border_width=1,
+        border_color=COR_CINZA
+    )
+    btn_add_cargo.grid(row=2, column=2, sticky="w",padx=(0,60))
 
     #endregion
 
@@ -189,6 +201,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         text_color=COR_PRETO
     )
     combo_status.grid(row=6, column=1, pady=5)
+    combo_status.configure(state="readonly")
 
     #endregion
     

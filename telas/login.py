@@ -54,7 +54,10 @@ def montar_tela_login(container):
                 icon="check"
             )
 
-            janela_principal.criar_janela_principal()
+            for widget in container.winfo_children():
+                widget.destroy()
+
+                janela_principal.montar_tela_principal(container)
         else:
             CTkMessagebox(
                 title="Erro",
