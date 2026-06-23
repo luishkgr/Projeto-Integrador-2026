@@ -4,6 +4,7 @@ import sqlite3
 from .tela_add_funcionario import montar_tela_add_funcionario
 from .tela_edit_funcionario import montar_tela_editar_funcionario
 from CTkMessagebox import CTkMessagebox
+from bancodedados.banco import delete_profissional
 
 funcionario_selecionado = {"id": None}
 linha_selecionada = {"labels": None}

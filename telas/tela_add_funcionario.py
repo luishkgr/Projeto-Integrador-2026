@@ -2,7 +2,7 @@ import customtkinter as ctk
 from .componentes import *
 import sqlite3
 from .tela_funcionarios import *
-
+from bancodedados.banco import cadastro_profissional
 
 #region config tela
 
@@ -191,12 +191,23 @@ def montar_tela_add_funcionario(frame_conteudo):
     combo_status.grid(row=6, column=1, pady=5)
 
     #endregion
+    
+    #region gets entry
+    def salvar_profissional():
+        nome = entry_nome.get()
+        cargo = combo_cargo.get()
+        registro = entry_registro.get()
+        fone = entry_telefone.get()
+        email = entry_email.get()
+        cadastro_profissional(nome, cargo, registro, fone, email)
+    #endregion
 
     #region botão salvar
 
     btn_salvar = botao_salvar(
         frame_add_funcionario,
         "Salvar",
+        salvar_profissional
     )
     btn_salvar.grid(row=7, column=0, columnspan=2, pady=40)
 
