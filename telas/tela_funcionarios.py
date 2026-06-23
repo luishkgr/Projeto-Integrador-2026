@@ -1,8 +1,8 @@
 import customtkinter as ctk
-from telas.componentes import *
+from .componentes import *
 import sqlite3
-import tela_add_funcionario
-import tela_edit_funcionario
+from .tela_add_funcionario import montar_tela_add_funcionario
+from .tela_edit_funcionario import montar_tela_editar_funcionario
 
 funcionario_selecionado = {"id": None}
 linha_selecionada = {"labels": None}
@@ -58,7 +58,7 @@ def montar_tela_funcionarios(frame_conteudo):
     btn_add = botao_verde(
         frame_conteudo,
         "Adicionar funcionário +",
-        comando=lambda: tela_add_funcionario.montar_tela_add_funcionario(frame_conteudo),
+        comando=lambda: montar_tela_add_funcionario(frame_conteudo),
     )
     btn_add.grid(row=1, column=0, sticky="w", padx=17)
 
@@ -197,7 +197,7 @@ def montar_tela_funcionarios(frame_conteudo):
             font=("Segoe UI Semibold", 11),
             fg_color=COR_AZUL,
             hover_color=HOVER_AZUL,
-            command=lambda id_func=id_funcionario: tela_edit_funcionario.montar_tela_editar_funcionario(frame_conteudo,id_func)
+            command=lambda id_func=id_funcionario: montar_tela_editar_funcionario(frame_conteudo,id_func)
         )
         btn_editar.grid(row=0, column=0, padx=(0, 5))
 

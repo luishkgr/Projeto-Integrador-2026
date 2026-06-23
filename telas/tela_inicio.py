@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from telas.componentes import *
+from .componentes import *
 from PIL import Image
 from datetime import datetime
 

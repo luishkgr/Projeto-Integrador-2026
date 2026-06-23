@@ -1,7 +1,5 @@
 import customtkinter as ctk
 
-
-
 COR_PRINCIPAL = "#0B2A6F"
 COR_AZUL = "#3c48eb"
 HOVER_AZUL = "#343ec9"
