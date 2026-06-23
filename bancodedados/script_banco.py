@@ -45,7 +45,7 @@ table_profissional =(""" CREATE TABLE IF NOT EXISTS "profissional" (
  
 	"email"	TEXT NOT NULL UNIQUE,
                      
-    CHECK(status IN ('Ativo','Inativo', 'Afastado)),
+    CHECK(status IN ('Ativo','Inativo', 'Afastado')),
  
 	PRIMARY KEY("id" AUTOINCREMENT)
  
