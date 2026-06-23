@@ -10,5 +10,4 @@ bd.inicializar_db()
 montar_tela_principal(app)
 # montar_tela_login(app)
 
-bd.cadastro_profissional("luis", "rei", "crm12300", "4799999999", "luis@luis.com")
 app.mainloop()
