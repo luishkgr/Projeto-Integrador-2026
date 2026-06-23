@@ -12,6 +12,9 @@ from datetime import datetime
 
 #region config tela
 def montar_tela_principal(container):
+    # for widget in container.winfo_children():
+        # widget.destroy()
+    
     container.title("Sistema de Horários e Escala de Plantão")
     container.geometry("1200x700")
     container.resizable(False, False)

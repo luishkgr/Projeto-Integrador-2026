@@ -1,7 +1,8 @@
+import os
 import sqlite3
 import bancodedados.script_banco as script_banco
 
-DB_NAME = "./bancodedados/banco.db"
+DB_NAME = os.path.join(os.path.dirname(__file__), "banco.db")
 
 def conectar():
     return sqlite3.connect(DB_NAME)
@@ -16,6 +17,19 @@ def inicializar_db():
     cursor.execute(script_banco.table_escala)
 
     conn.commit()
+
+def validar_usuario(login, senha):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT id, nome, login, senha FROM usuario WHERE login = ?",
+        (login.strip(),)
+    )
+    resultado = cursor.fetchone()
+    print("validar_usuario:", repr(login.strip()), "resultado:", resultado)
+    conn.close()
+
+    return bool(resultado and resultado[3] == senha.strip())
     
 # CRUD
 # CREATE - INSERT
@@ -285,4 +299,3 @@ def delete_escala(escala_id):
     conn.commit()
     conn.close()
 
- 

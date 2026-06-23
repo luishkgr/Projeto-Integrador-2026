@@ -2,12 +2,13 @@ import customtkinter as ctk
 from PIL import Image
 from CTkMessagebox import CTkMessagebox
 import sqlite3
-from telas.componentes import *
+from .componentes import *
+from bancodedados.banco import validar_usuario
+from .janela_principal import montar_tela_principal
 
-from telas import janela_principal
-
-def montar_tela_login(container):
-
+def montar_tela_login(container, validar_entrar):
+    # for widget in container.winfo_children():
+        # widget.destroy()
     #region configuração da tela
     container.title("Sistema de Horários e Escala de Plantão")
     container.geometry("1200x700")
@@ -28,7 +29,7 @@ def montar_tela_login(container):
     container.geometry(f"{largura}x{altura}+{x}+{y}")
 
     def validar_login(usuario, senha):
-        if usuario == "" or senha == "":
+        if usuario.strip() == "" or senha.strip() == "":
             CTkMessagebox(
                 title="Erro",
                 message="Preencha usuário e senha!",
@@ -36,25 +37,13 @@ def montar_tela_login(container):
             )
             return
 
-        conexao = sqlite3.connect("bancodedados/banco.db")
-        cursor = conexao.cursor()
-
-        cursor.execute(
-            "SELECT * FROM usuario WHERE login = ? AND senha = ?",
-            (usuario, senha)
-        )
-
-        usuario_encontrado = cursor.fetchone()
-        conexao.close()
-
-        if usuario_encontrado:
+        if validar_usuario(usuario, senha):
             CTkMessagebox(
                 title="Sucesso",
                 message="Login realizado com sucesso!",
                 icon="check"
             )
-
-            janela_principal.criar_janela_principal()
+            validar_entrar()
         else:
             CTkMessagebox(
                 title="Erro",
@@ -369,8 +358,8 @@ def montar_tela_login(container):
         fg_color="#0649bc",
         hover_color="#053A96",
         command=lambda: validar_login(
-        entry_usuario.get(),
-        entry_senha.get()
+            entry_usuario.get(),
+            entry_senha.get()
         ),
         text="  Entrar",
         text_color="white",

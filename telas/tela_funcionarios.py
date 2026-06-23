@@ -45,8 +45,7 @@ def confirmar_exclusao(id_funcionario):
     resposta = msg.get()
 
     if resposta == "Sim":
-        print("Excluindo:", id_funcionario)
-
+        delete_profissional(id_funcionario)
 
         CTkMessagebox(
             title="Sucesso",
