@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from componentes import *
+from .componentes import *
 import sqlite3
 
 #region config tela

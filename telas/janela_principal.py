@@ -1,13 +1,13 @@
 import customtkinter as ctk
 from PIL import Image
 from CTkMessagebox import CTkMessagebox
-import tela_inicio
-import tela_escalas
-import tela_plantoes
-import tela_funcionarios
-import tela_relatorios
-import tela_usuarios
-from componentes import *
+from .tela_inicio import mostrar_inicio
+from .tela_escalas import mostrar_escalas
+from .tela_plantoes import mostrar_plantoes
+from .tela_funcionarios import montar_tela_funcionarios
+from .tela_relatorios import mostrar_relatorios
+from .tela_usuarios import mostrar_usuarios
+from .componentes import *
 from datetime import datetime
 
 #region config tela
@@ -129,7 +129,7 @@ def montar_tela_principal(container):
         frame_home,
         text="  Início",
         image=img_btn_home,
-        command=lambda: tela_inicio.mostrar_inicio(frame_conteudo),
+        command=lambda: mostrar_inicio(frame_conteudo),
         font=("Segoe UI Semibold", 15),
         compound="left",
         anchor="w",
@@ -166,7 +166,7 @@ def montar_tela_principal(container):
         frame_escala,
         text="  Escalas",
         image=img_btn_esc,
-        command=lambda: tela_escalas.mostrar_escalas(frame_conteudo),
+        command=lambda: mostrar_escalas(frame_conteudo),
         font=("Segoe UI Semibold", 15),
         compound="left",
         anchor="w",
@@ -203,7 +203,7 @@ def montar_tela_principal(container):
         frame_plantao,
         text="  Plantões",
         image=img_btn_plantao,
-        command=lambda: tela_plantoes.mostrar_plantoes(frame_conteudo),
+        command=lambda: mostrar_plantoes(frame_conteudo),
         font=("Segoe UI Semibold", 15),
         compound="left",
         anchor="w",
@@ -241,7 +241,7 @@ def montar_tela_principal(container):
         frame_func,
         text="  Funcionários",
         image=img_btn_func,
-        command=lambda: tela_funcionarios.montar_tela_funcionarios(frame_conteudo),
+        command=lambda: montar_tela_funcionarios(frame_conteudo),
         font=("Segoe UI Semibold", 15),
         compound="left",
         anchor="w",
@@ -291,7 +291,7 @@ def montar_tela_principal(container):
         frame_relatorios,
         text=" Relatórios",
         image=img_btn_relatorios,
-        command=lambda: tela_relatorios.mostrar_relatorios(frame_conteudo),
+        command=lambda: mostrar_relatorios(frame_conteudo),
         font=("Segoe UI Semibold", 15),
         compound="left",
         anchor="w",
@@ -329,7 +329,7 @@ def montar_tela_principal(container):
         frame_usuario,
         text="  Gerenciar usuário",
         image=img_btn_usuario,
-        command=lambda: tela_usuarios.mostrar_usuarios(frame_conteudo),
+        command=lambda: mostrar_usuarios(frame_conteudo),
         font=("Segoe UI Semibold", 15),
         compound="left",
         anchor="w",
@@ -490,4 +490,4 @@ def montar_tela_principal(container):
 
     #endregion
 
-    tela_inicio.mostrar_inicio(frame_conteudo)
+    mostrar_inicio(frame_conteudo)

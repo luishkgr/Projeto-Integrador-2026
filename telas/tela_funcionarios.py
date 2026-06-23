@@ -1,8 +1,8 @@
 import customtkinter as ctk
-from componentes import *
+from .componentes import *
 import sqlite3
-import tela_add_funcionario
-import tela_edit_funcionario
+from .tela_add_funcionario import montar_tela_add_funcionario
+from .tela_edit_funcionario import montar_tela_editar_funcionario
 
 funcionario_selecionado = {"id": None}
 linha_selecionada = {"labels": None}
