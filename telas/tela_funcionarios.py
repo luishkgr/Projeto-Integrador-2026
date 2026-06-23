@@ -3,6 +3,7 @@ from .componentes import *
 import sqlite3
 from .tela_add_funcionario import montar_tela_add_funcionario
 from .tela_edit_funcionario import montar_tela_editar_funcionario
+from bancodedados.banco import delete_profissional
 
 funcionario_selecionado = {"id": None}
 linha_selecionada = {"labels": None}
@@ -209,7 +210,7 @@ def montar_tela_funcionarios(frame_conteudo):
             font=("Segoe UI Semibold", 11),
             fg_color=COR_VERMELHO,
             hover_color=HOVER_VERMELHO,
-            command=lambda id_func=id_funcionario: print("Excluir:", id_func)
+            command=lambda id_func=id_funcionario: delete_profissional(id_func)
         )
         btn_excluir.grid(row=0, column=1)
 

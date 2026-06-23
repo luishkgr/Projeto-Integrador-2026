@@ -159,7 +159,13 @@ def consultar_profissional(profissional_id):
 
     conn.commit()
 
+    dados = cursor.fetchall()
+
     conn.close()
+
+    return dados
+    
+    
  
 def consultar_plantao(plantao_id):
 
@@ -321,7 +327,7 @@ def delete_profissional(profissional_id):
 
     cursor.execute( """
 
-                     DELETE FROM profissional WHERE profissional_id = ?
+                     DELETE FROM profissional WHERE id = ?
 
                    """, (profissional_id,))
 
