@@ -3,11 +3,11 @@ table_usuario = ("""CREATE TABLE IF NOT EXISTS "usuario" (
  
 	"id"	INTEGER NOT NULL,
  
-	"nome"	VARCHAR(50) NOT NULL,
+	"nome"	TEXT NOT NULL,
  
-	"login"	VARCHAR(100) NOT NULL UNIQUE,
+	"login"	TEXT NOT NULL UNIQUE,
  
-	"senha"	VARCHAR(50) NOT NULL,
+	"senha"	TEXT NOT NULL,
  
 	PRIMARY KEY("id" AUTOINCREMENT)
  
@@ -20,9 +20,9 @@ table_setor = ("""CREATE TABLE IF NOT EXISTS "setor" (
  
 	"id"	INTEGER NOT NULL,
  
-	"nome"	VARCHAR(50) NOT NULL,
+	"nome"	TEXT NOT NULL,
  
-	"descricao" VARCHAR(50) NOT NULL,
+	"descricao" TEXT NOT NULL,
  
 	PRIMARY KEY("id" AUTOINCREMENT)
  
@@ -33,17 +33,19 @@ table_profissional =(""" CREATE TABLE IF NOT EXISTS "profissional" (
  
 	"id"	INTEGER NOT NULL,
  
-	"nome"	VARCHAR(50) NOT NULL,
+	"nome"	TEXT NOT NULL,
  
-	"cargo"	VARCHAR(50) NOT NULL,
+	"cargo"	TEXT NOT NULL,
  
-	"status"	VARCHAR(50) NOT NULL,
+	"status" TEXT NOT NULL,
                      
-	"registro_profissional"	VARCHAR(50) NOT NULL UNIQUE,
+	"registro_profissional"	TEXT NOT NULL UNIQUE,
  
-	"fone"	VARCHAR(50) NOT NULL,
+	"fone"	TEXT NOT NULL,
  
-	"email"	VARCHAR(50) NOT NULL,
+	"email"	TEXT NOT NULL UNIQUE,
+                     
+    CHECK(status IN ('Ativo','Inativo', 'Afastado)),
  
 	PRIMARY KEY("id" AUTOINCREMENT)
  
@@ -56,15 +58,17 @@ table_plantao = ("""CREATE TABLE IF NOT EXISTS "plantao" (
  
 	"setor_id"	INTEGER NOT NULL,
  
-	"data"	INTEGER NOT NULL,
+	"data"	DATE NOT NULL,
  
-	"hora_inicio"	VARCHAR(50) NOT NULL,
-	"hora_fim"	VARCHAR(50) NOT NULL,
-	"quantidade_profissionais"	VARCHAR(50) NOT NULL,
+	"hora_inicio"	TIME NOT NULL,
+                 
+	"hora_fim"	TIME NOT NULL,
+                 
+	"quantidade_profissionais" INTEGER NOT NULL,
  
-	PRIMARY KEY("id" AUTOINCREMENT)
+	PRIMARY KEY("id" AUTOINCREMENT),
  
-	CONSTRAINT "fk_plantao_setor" FOREIGN KEY("setor_id") REFERENCES "setor"("setor_id")
+	CONSTRAINT "fk_plantao_setor" FOREIGN KEY("setor_id") REFERENCES "setor"("id")
 )
                  """)
 
@@ -76,16 +80,20 @@ table_escala =(""" CREATE TABLE IF NOT EXISTS "escala" (
  
 	"plantao_id"	INTEGER NOT NULL,
  
-	"status"	VARCHAR(50) NOT NULL,
+	"status"	TEXT NOT NULL,
  
-	"data_alocacao"	VARCHAR(50) NOT NULL,
+	"data_alocacao"	DATE NOT NULL,
  
-	"observacao"	VARCHAR(50) NOT NULL,
+	"observacao"	TEXT,
+               
+    CHECK(status IN ('Confirmada', 'Cancelada','Em andamento')),
  
-	PRIMARY KEY("id" AUTOINCREMENT)
+	PRIMARY KEY("id" AUTOINCREMENT),
+               
+    UNIQUE(profissional_id, plantao_id),
  
-	CONSTRAINT "fk_escala_profissional" FOREIGN KEY("profissional_id") REFERENCES "profissional"("profissional_id")
+	CONSTRAINT "fk_escala_profissional" FOREIGN KEY("profissional_id") REFERENCES "profissional"("id"),
  
-	CONSTRAINT "fk_escala_plantao" FOREIGN KEY("plantao_id") REFERENCES "plantao"("plantao_id")
+	CONSTRAINT "fk_escala_plantao" FOREIGN KEY("plantao_id") REFERENCES "plantao"("id")
 )
                """)
