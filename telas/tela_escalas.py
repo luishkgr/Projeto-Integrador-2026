@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from telas.componentes import *
 
 
 def mostrar_escalas(frame_conteudo):

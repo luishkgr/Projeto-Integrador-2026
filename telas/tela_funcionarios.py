@@ -58,7 +58,7 @@ def montar_tela_funcionarios(frame_conteudo):
     btn_add = botao_verde(
         frame_conteudo,
         "Adicionar funcionário +",
-        comando=lambda: tela_add_funcionario.montar_tela_add_funcionario(frame_conteudo),
+        comando=lambda: montar_tela_add_funcionario(frame_conteudo),
     )
     btn_add.grid(row=1, column=0, sticky="w", padx=17)
 
@@ -79,7 +79,7 @@ def montar_tela_funcionarios(frame_conteudo):
     )
     frame_funcionarios.grid(row=0, column=0)
 
-    larguras_colunas = [15, 170, 120, 120, 100, 150, 50, 150]
+    larguras_colunas = [15, 170, 80, 160, 100, 150, 50, 150]
 
     for coluna, largura in enumerate(larguras_colunas):
         frame_funcionarios.grid_columnconfigure(coluna, minsize=largura, weight=0)
@@ -197,7 +197,7 @@ def montar_tela_funcionarios(frame_conteudo):
             font=("Segoe UI Semibold", 11),
             fg_color=COR_AZUL,
             hover_color=HOVER_AZUL,
-            command=lambda id_func=id_funcionario: tela_edit_funcionario.montar_tela_editar_funcionario(frame_conteudo,id_func)
+            command=lambda id_func=id_funcionario: montar_tela_editar_funcionario(frame_conteudo,id_func)
         )
         btn_editar.grid(row=0, column=0, padx=(0, 5))
 
