@@ -79,7 +79,7 @@ def montar_tela_funcionarios(frame_conteudo):
     )
     frame_funcionarios.grid(row=0, column=0)
 
-    larguras_colunas = [15, 170, 120, 120, 100, 150, 50, 150]
+    larguras_colunas = [15, 170, 80, 160, 100, 150, 50, 150]
 
     for coluna, largura in enumerate(larguras_colunas):
         frame_funcionarios.grid_columnconfigure(coluna, minsize=largura, weight=0)
