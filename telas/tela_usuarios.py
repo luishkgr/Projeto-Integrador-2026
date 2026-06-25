@@ -17,11 +17,4 @@ def mostrar_usuarios(frame_conteudo):
     )
     titulo.grid(row=0, column=0, columnspan=3, pady=(60, 20))
 
-    card1 = ctk.CTkFrame(frame_conteudo, width=250, height=120)
-    card1.grid(row=1, column=0, padx=20, pady=20)
-
-    card2 = ctk.CTkFrame(frame_conteudo, width=250, height=120)
-    card2.grid(row=1, column=1, padx=20, pady=20)
-
-    card3 = ctk.CTkFrame(frame_conteudo, width=250, height=120)
-    card3.grid(row=1, column=2, padx=20, pady=20)
+    

@@ -11,17 +11,19 @@ def mostrar_plantoes(frame_conteudo):
 
     titulo = ctk.CTkLabel(
         frame_conteudo,
-        text="Plantoes",
+        text="Plantões do dia",
         font=("Segoe UI Semibold", 32),
         text_color="#0B2A6F"
     )
     titulo.grid(row=0, column=0, columnspan=3, pady=(60, 20))
 
-    card1 = ctk.CTkFrame(frame_conteudo, width=250, height=120)
-    card1.grid(row=1, column=0, padx=20, pady=20)
-
-    card2 = ctk.CTkFrame(frame_conteudo, width=250, height=120)
-    card2.grid(row=1, column=1, padx=20, pady=20)
-
-    card3 = ctk.CTkFrame(frame_conteudo, width=250, height=120)
-    card3.grid(row=1, column=2, padx=20, pady=20)
+    frame_plantoes = ctk.CTkFrame(
+        frame_conteudo,
+        width=800,
+        height=450,
+        border_width=1,
+        border_color=COR_CINZA,
+        corner_radius=4,
+        fg_color=COR_BRANCO)
+    frame_plantoes.grid(row=1, column=0, columnspan=3, pady=20)
+    frame_plantoes.grid_propagate(False)

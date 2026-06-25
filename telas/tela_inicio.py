@@ -40,13 +40,14 @@ def mostrar_inicio(frame_conteudo):
 
     frame_proximos_plantoes = ctk.CTkFrame(
         frame_conteudo,
-        fg_color=COR_VERMELHO,
+        fg_color=COR_BRANCO,
         corner_radius=15,
+        width=500, 
         height=360,
         border_width=2,
         border_color=COR_CINZA,
     )
-    frame_proximos_plantoes.grid(row=2, column=0, columnspan=1, sticky="ew",pady=10, padx=15)
+    frame_proximos_plantoes.grid(row=2, column=0, columnspan=3, padx=15, pady=10)
     frame_proximos_plantoes.grid_propagate(False)
     frame_proximos_plantoes.grid_columnconfigure(0, weight=1)
     
@@ -330,7 +331,7 @@ def mostrar_inicio(frame_conteudo):
         height=40,
         fg_color="transparent"
         )
-    titulo_prox_plantoes.grid(row=0, column=0, pady=30)
+    titulo_prox_plantoes.grid(row=0, column=0, columnspan=3, pady=30)
 
     
 
