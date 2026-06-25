@@ -207,6 +207,17 @@ def listar_plantoes():
     conn.close()
     return plantoes
 
+def obter_plantao_por_data_hora(data, hora_inicio, hora_fim):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT id FROM plantao WHERE data = ? AND hora_inicio = ? AND hora_fim = ?",
+        (data, hora_inicio, hora_fim)
+    )
+    plantao = cursor.fetchone()
+    conn.close()
+    return plantao[0] if plantao else None
+
 def consultar_plantao(plantao_id):
     conn = conectar()
     cursor = conn.cursor()

@@ -5,6 +5,7 @@ from .tela_add_funcionario import montar_tela_add_funcionario
 from .tela_edit_funcionario import montar_tela_editar_funcionario
 from CTkMessagebox import CTkMessagebox
 from bancodedados.banco import excluir_profissional
+
 funcionario_selecionado = {"id": None}
 linha_selecionada = {"labels": None}
 
@@ -44,7 +45,7 @@ def confirmar_exclusao(id_funcionario):
     resposta = msg.get()
 
     if resposta == "Sim":
-        delete_profissional(id_funcionario)
+        excluir_profissional(id_funcionario)
 
         CTkMessagebox(
             title="Sucesso",
