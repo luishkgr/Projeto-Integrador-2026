@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from .componentes import *
+from utilidades.validacoes import aplicar_mascara_telefone, validar_todos_campos
 import sqlite3
 from .tela_funcionarios import *
 from .tela_add_cargo import abrir_janela_add_cargo
@@ -145,12 +146,13 @@ def montar_tela_add_funcionario(frame_conteudo):
         width=220,
         height=25,
         border_width=1,
-        placeholder_text="(00) 00000-0000)",
+        placeholder_text="(00) 00000-0000",
         corner_radius=3,
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
     entry_telefone.grid(row=4, column=1, pady=5)
+    entry_telefone.bind("<KeyRelease>", aplicar_mascara_telefone)
 
     #endregion
 
@@ -209,7 +211,26 @@ def montar_tela_add_funcionario(frame_conteudo):
         registro = entry_registro.get()
         fone = entry_telefone.get()
         email = entry_email.get()
+        
+        # Validar todos os campos
+        validacao = validar_todos_campos(nome, cargo, registro, fone, email)
+        
+        if validacao is not True:
+            # Exibir mensagem de erro
+            ctk.CTkMessagebox(
+                title="Erro na Validação",
+                message=validacao,
+                icon="cancel"
+            )
+            return
+        
+        # Se passou na validação, salva
         cadastro_profissional(nome, cargo, registro, fone, email)
+        ctk.CTkMessagebox(
+            title="Sucesso",
+            message="Funcionário cadastrado com sucesso!",
+            icon="check"
+        )
     #endregion
 
     #region botão salvar
