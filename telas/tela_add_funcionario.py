@@ -3,7 +3,7 @@ from .componentes import *
 import sqlite3
 from .tela_funcionarios import *
 from .tela_add_cargo import abrir_janela_add_cargo
-from bancodedados.banco import cadastro_profissional
+from bancodedados.banco import cadastro_profissional, listar_setores
 
 #region config tela
 
@@ -40,19 +40,6 @@ def montar_tela_add_funcionario(frame_conteudo):
 
 #endregion
 
-    '''#region botao voltar
-
-    ctk.CTkButton(
-        frame_add_funcionario,
-        text="<--Voltar",
-        font=("Segoe UI Semibold", 12),
-        fg_color=COR_AZUL,
-        hover_color=HOVER_AZUL,
-        command=lambda: montar_tela_funcionarios(frame_conteudo)
-    ).grid(row=0, column=0, sticky="w", padx=20, pady=20)
-
-    #endregion'''
-
     #region add nome
 
     labela_nome = ctk.CTkLabel(
@@ -86,6 +73,10 @@ def montar_tela_add_funcionario(frame_conteudo):
     )
     label_cargo.grid(row=1, column=1, pady=(50,0))
 
+    # Carregar cargos do banco de dados
+    setores = listar_setores()
+    nomes_cargos = [setor[1] for setor in setores]
+
     combo_cargo = ctk.CTkComboBox(
         frame_add_funcionario,
         width=220,
@@ -93,9 +84,10 @@ def montar_tela_add_funcionario(frame_conteudo):
         border_width=1,
         corner_radius=3,
         font=("Segoe UI", 12),
-        text_color=COR_PRETO
+        text_color=COR_PRETO,
+        values=nomes_cargos
     )
-    combo_cargo.grid(row=2, column=1, pady=10,padx=5)
+    combo_cargo.grid(row=2, column=1, pady=10, padx=5)
     combo_cargo.configure(state="readonly")
 
     btn_add_cargo = ctk.CTkButton(
@@ -108,7 +100,7 @@ def montar_tela_add_funcionario(frame_conteudo):
         border_width=1,
         border_color=COR_CINZA
     )
-    btn_add_cargo.grid(row=2, column=1, sticky="e",padx=(0,40))
+    btn_add_cargo.grid(row=2, column=1, sticky="e", padx=(0, 40))
 
 
 
@@ -202,7 +194,8 @@ def montar_tela_add_funcionario(frame_conteudo):
         border_width=1,
         corner_radius=3,
         font=("Segoe UI", 12),
-        text_color=COR_PRETO
+        text_color=COR_PRETO,
+        values=["Ativo", "Inativo"]
     )
     combo_status.grid(row=6, column=1, pady=5)
     combo_status.configure(state="readonly")
@@ -227,20 +220,5 @@ def montar_tela_add_funcionario(frame_conteudo):
         salvar_profissional
     )
     btn_salvar.grid(row=7, column=0, columnspan=2, pady=40)
-
-    #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     #endregion
