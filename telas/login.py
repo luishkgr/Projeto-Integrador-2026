@@ -7,8 +7,8 @@ from bancodedados.banco import validar_usuario
 from .janela_principal import montar_tela_principal
 
 def montar_tela_login(container, validar_entrar):
-    # for widget in container.winfo_children():
-        # widget.destroy()
+    for widget in container.winfo_children():
+        widget.destroy()
     #region configuração da tela
     container.title("Sistema de Horários e Escala de Plantão")
     container.geometry("1200x700")
@@ -38,11 +38,13 @@ def montar_tela_login(container, validar_entrar):
             return
 
         if validar_usuario(usuario, senha):
-            CTkMessagebox(
+            msg = CTkMessagebox(
                 title="Sucesso",
                 message="Login realizado com sucesso!",
                 icon="check"
             )
+            msg.get()
+
             validar_entrar()
         else:
             CTkMessagebox(

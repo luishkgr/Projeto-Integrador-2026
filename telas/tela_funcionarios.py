@@ -53,6 +53,14 @@ def confirmar_exclusao(id_funcionario):
             icon="check"
         )
 
+def limitar_texto(texto, limite):
+    texto = str(texto)
+
+    if len(texto) > limite:
+        return texto[:limite - 3] + "..."
+
+    return texto
+
 #endregion
 
 
@@ -96,7 +104,7 @@ def montar_tela_funcionarios(frame_conteudo):
         frame_info_funci,
         border_width=1,
         corner_radius=3,
-        width=920,
+        width=940,
         height=450,
         border_color="#000000"
     )
@@ -161,6 +169,22 @@ def montar_tela_funcionarios(frame_conteudo):
         labels_linha = []
 
         for coluna, valor in enumerate(funcionario):
+
+            valor = str(valor)
+
+            # Limita o tamanho de algumas colunas
+            if coluna == 1 and len(valor) > 22:      # Nome
+                valor = valor[:22] + "..."
+
+            elif coluna == 2 and len(valor) > 15:    # Cargo
+                valor = valor[:15] + "..."
+
+            elif coluna == 3 and len(valor) > 18:    # Registro
+                valor = valor[:18] + "..."
+
+            elif coluna == 5 and len(valor) > 25:    # Email
+                valor = valor[:25] + "..."
+
             label = ctk.CTkLabel(
                 frame_funcionarios,
                 text=valor,

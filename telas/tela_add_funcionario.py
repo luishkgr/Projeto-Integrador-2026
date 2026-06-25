@@ -2,6 +2,7 @@ import customtkinter as ctk
 from .componentes import *
 import sqlite3
 from .tela_funcionarios import *
+from .tela_add_cargo import abrir_janela_add_cargo
 from bancodedados.banco import cadastro_profissional
 
 #region config tela
@@ -94,19 +95,22 @@ def montar_tela_add_funcionario(frame_conteudo):
         font=("Segoe UI", 12),
         text_color=COR_PRETO
     )
-    combo_cargo.grid(row=2, column=1, pady=10)
+    combo_cargo.grid(row=2, column=1, pady=10,padx=5)
     combo_cargo.configure(state="readonly")
 
     btn_add_cargo = ctk.CTkButton(
         frame_add_funcionario,
         text="+",
+        command=lambda: abrir_janela_add_cargo(),
         font=("Segoe UI", 15, "bold"),
         width=50, 
         height=25,
         border_width=1,
         border_color=COR_CINZA
     )
-    btn_add_cargo.grid(row=2, column=2, sticky="w",padx=(0,60))
+    btn_add_cargo.grid(row=2, column=1, sticky="e",padx=(0,40))
+
+
 
     #endregion
 

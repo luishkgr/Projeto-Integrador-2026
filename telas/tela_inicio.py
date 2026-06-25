@@ -47,6 +47,9 @@ def mostrar_inicio(frame_conteudo):
         border_color=COR_CINZA,
     )
     frame_proximos_plantoes.grid(row=2, column=0, columnspan=1, sticky="ew",pady=10, padx=15)
+    frame_proximos_plantoes.grid_propagate(False)
+    frame_proximos_plantoes.grid_columnconfigure(0, weight=1)
+    
 
 
 
@@ -97,13 +100,13 @@ def mostrar_inicio(frame_conteudo):
     #region card funcionarios
 
     frame_card_funcionarios = ctk.CTkFrame(
-        frame_cards,
-        width=200,
-        height=120,
-        fg_color=COR_BRANCO,
-        border_width=2,
-        border_color=COR_AZUL,
-        corner_radius=5
+    frame_cards,
+    width=200,
+    height=120,
+    fg_color=COR_BRANCO,
+    border_width=2,
+    border_color=COR_AZUL,
+    corner_radius=5
     )
     frame_card_funcionarios.grid(row=0, column=0, pady=25)
     frame_card_funcionarios.grid_propagate(False)
@@ -115,79 +118,92 @@ def mostrar_inicio(frame_conteudo):
         corner_radius=100,
         fg_color=COR_AZUL_FUNDO
     )
-    frame_circulo_funcionarios.grid(row=0, column=0, pady=20)
+    frame_circulo_funcionarios.place(x=20, y=30)
 
-    imagem_funcionarios = Image.open(("telas/img/group_azul.png"))
+    imagem = Image.open("telas/img/group_azul.png")
+    img = ctk.CTkImage(imagem, imagem, size=(40,40))
 
-    img_funcionarios = ctk.CTkImage(
-        light_image=imagem_funcionarios,
-        dark_image=imagem_funcionarios,
-        size=(40,40)
-    )
-
-    label_img_funcionarios = ctk.CTkLabel(
+    ctk.CTkLabel(
         frame_card_funcionarios,
         text="",
-        image=img_funcionarios,
+        image=img,
         fg_color=COR_AZUL_FUNDO
+    ).place(x=30, y=40)
 
-    )
-    label_img_funcionarios.grid(row=0, column=0, sticky="w",pady=40,padx=25)
+    ctk.CTkLabel(
+        frame_card_funcionarios,
+        text="Funcionários",
+        font=("Segoe UI",14,"bold")
+    ).place(x=95,y=15)
 
     label_total_funcionarios = ctk.CTkLabel(
         frame_card_funcionarios,
-        text="Funcionários",
-        font=("Segoe UI" ,14, "bold")
+        text="32",
+        font=("Segoe UI",24,"bold")
     )
-    label_total_funcionarios.grid(row=0, column=1,sticky="n", pady=10, padx=(0,20))
+    label_total_funcionarios.place(x=95,y=45)
+
+    ctk.CTkLabel(
+        frame_card_funcionarios,
+        text="Ativos",
+        font=("Segoe UI",12),
+        text_color="gray"
+    ).place(x=95,y=82)
 
     #endregion
 
     #region card plantoes
 
     frame_card_plantoes = ctk.CTkFrame(
-        frame_cards,
-        width=200,
-        height=120,
-        fg_color=COR_BRANCO,
-        border_width=2,
-        border_color=COR_ROXO,
-        corner_radius=5
+    frame_cards,
+    width=200,
+    height=120,
+    fg_color=COR_BRANCO,
+    border_width=2,
+    border_color=COR_ROXO,
+    corner_radius=5
     )
-    frame_card_plantoes.grid(row=0, column=1, pady=5)
+    frame_card_plantoes.grid(row=0,column=1,pady=25)
     frame_card_plantoes.grid_propagate(False)
 
-    frame_circulo_plantoes = ctk.CTkFrame(
+    frame_circulo = ctk.CTkFrame(
         frame_card_plantoes,
         width=60,
         height=60,
         corner_radius=100,
         fg_color=COR_ROXO_FUNDO
     )
-    frame_circulo_plantoes.grid(row=0, column=0, pady=20)
+    frame_circulo.place(x=20,y=30)
 
-    imagem_funcionarios = Image.open(("telas/img/medical.png"))
+    imagem = Image.open("telas/img/medical.png")
+    img = ctk.CTkImage(imagem,imagem,size=(40,40))
 
-    img_calendario = ctk.CTkImage(
-        light_image=imagem_funcionarios,
-        dark_image=imagem_funcionarios,
-        size=(40,40)
-    )
-
-    label_img_funcionarios = ctk.CTkLabel(
+    ctk.CTkLabel(
         frame_card_plantoes,
         text="",
-        image=img_calendario,
-        fg_color=COR_AZUL_FUNDO
-    )
-    label_img_funcionarios.grid(row=0, column=0, sticky="w",pady=40,padx=25)
+        image=img,
+        fg_color=COR_ROXO_FUNDO
+    ).place(x=30,y=40)
+
+    ctk.CTkLabel(
+        frame_card_plantoes,
+        text="Plantões hoje",
+        font=("Segoe UI",14,"bold")
+    ).place(x=95,y=15)
 
     label_total_plantoes = ctk.CTkLabel(
         frame_card_plantoes,
-        text= "Plantões",
-        font=("Segoe UI", 14, "bold")
+        text="8",
+        font=("Segoe UI",24,"bold")
     )
-    label_total_plantoes.grid(row=0, column=1,sticky="n", pady=10, padx=(0,20))
+    label_total_plantoes.place(x=95,y=45)
+
+    ctk.CTkLabel(
+        frame_card_plantoes,
+        text="Programados",
+        font=("Segoe UI",12),
+        text_color="gray"
+    ).place(x=95,y=82)
 
 
     #endregion
@@ -195,97 +211,136 @@ def mostrar_inicio(frame_conteudo):
     #region card ausencias
 
     frame_card_ausencias = ctk.CTkFrame(
-        frame_cards,
-        width=200,
-        height=120,
-        fg_color=COR_BRANCO,
-        border_width=2,
-        border_color=COR_LARANJA,
-        corner_radius=5
+    frame_cards,
+    width=200,
+    height=120,
+    fg_color=COR_BRANCO,
+    border_width=2,
+    border_color=COR_LARANJA,
+    corner_radius=5
     )
-    frame_card_ausencias.grid(row=0, column=2, pady=5)
+    frame_card_ausencias.grid(row=0,column=2,pady=25)
     frame_card_ausencias.grid_propagate(False)
 
-    frame_circulo_ausencias = ctk.CTkFrame(
+    frame_circulo = ctk.CTkFrame(
         frame_card_ausencias,
         width=60,
         height=60,
         corner_radius=100,
         fg_color=COR_LARANJA_FUNDO
     )
-    frame_circulo_ausencias.grid(row=0, column=0, pady=20)
+    frame_circulo.place(x=20,y=30)
 
-    imagem_ausencias = Image.open(("telas/img/cancel.png"))
+    imagem = Image.open("telas/img/cancel.png")
+    img = ctk.CTkImage(imagem,imagem,size=(40,40))
 
-    img_ausencias = ctk.CTkImage(
-        light_image=imagem_ausencias,
-        dark_image=imagem_ausencias,
-        size=(40,40)
-    )
-
-    label_img_ausencias = ctk.CTkLabel(
+    ctk.CTkLabel(
         frame_card_ausencias,
         text="",
-        image=img_ausencias,
+        image=img,
         fg_color=COR_LARANJA_FUNDO
-    )
-    label_img_ausencias.grid(row=0, column=0, sticky="w",pady=40,padx=25)
+    ).place(x=30,y=40)
+
+    ctk.CTkLabel(
+        frame_card_ausencias,
+        text="Ausências hoje",
+        font=("Segoe UI",14,"bold")
+    ).place(x=95,y=15)
 
     label_total_ausencias = ctk.CTkLabel(
         frame_card_ausencias,
-        text="Ausências",
-        font=("Segoe UI", 14, "bold")
+        text="2",
+        font=("Segoe UI",24,"bold")
     )
-    label_total_ausencias.grid(row=0, column=1,sticky="n", pady=10, padx=(0,20))
+    label_total_ausencias.place(x=95,y=45)
+
+    ctk.CTkLabel(
+        frame_card_ausencias,
+        text="Registradas",
+        font=("Segoe UI",12),
+        text_color="gray"
+    ).place(x=95,y=82)
 
     #endregion
 
     #region card pendencias
 
     frame_card_pendencias = ctk.CTkFrame(
-        frame_cards,
-        width=200,
-        height=120,
-        fg_color=COR_BRANCO,
-        border_width=2,
-        border_color=COR_VERMELHO,
-        corner_radius=5
+    frame_cards,
+    width=200,
+    height=120,
+    fg_color=COR_BRANCO,
+    border_width=2,
+    border_color=COR_VERMELHO,
+    corner_radius=5
     )
-    frame_card_pendencias.grid(row=0, column=3, pady=5)
+    frame_card_pendencias.grid(row=0,column=3,pady=25)
     frame_card_pendencias.grid_propagate(False)
 
-    frame_circulo_pendencias = ctk.CTkFrame(
+    frame_circulo = ctk.CTkFrame(
         frame_card_pendencias,
         width=60,
         height=60,
         corner_radius=100,
         fg_color=COR_FUNDO_VERMELHO
     )
-    frame_circulo_pendencias.grid(row=0, column=0, pady=20)
+    frame_circulo.place(x=20,y=30)
 
-    imagem_pendencias = Image.open("telas/img/warning.png")
+    imagem = Image.open("telas/img/warning.png")
+    img = ctk.CTkImage(imagem,imagem,size=(40,40))
 
-    img_pendencias = ctk.CTkImage(
-        light_image=imagem_pendencias,
-        dark_image=imagem_pendencias,
-        size=(40,40)
-    )
-
-    label_img_pendencias = ctk.CTkLabel(
+    ctk.CTkLabel(
         frame_card_pendencias,
         text="",
-        image=img_pendencias,
+        image=img,
         fg_color=COR_FUNDO_VERMELHO
-    )
-    label_img_pendencias.grid(row=0, column=0, sticky="w",pady=40,padx=25)
+    ).place(x=30,y=40)
+
+    ctk.CTkLabel(
+        frame_card_pendencias,
+        text="Pendências",
+        font=("Segoe UI",14,"bold")
+    ).place(x=95,y=15)
 
     label_total_pendencias = ctk.CTkLabel(
         frame_card_pendencias,
-        text="Pendências",
-        font=("Segoe UI", 14, "bold")
+        text="5",
+        font=("Segoe UI",24,"bold")
     )
-    label_total_pendencias.grid(row=0, column=1,sticky="n", pady=10, padx=(0,20))
+    label_total_pendencias.place(x=95,y=45)
+
+    ctk.CTkLabel(
+        frame_card_pendencias,
+        text="Aguardando ação",
+        font=("Segoe UI",12),
+        text_color="gray"
+    ).place(x=95,y=82)
 
     #endregion
+
+#endregion
+
+#region proximos plantoes
+
+    titulo_prox_plantoes = ctk.CTkLabel(
+        frame_proximos_plantoes,
+        text=("Plantões de hoje"),
+        font=("Segoe UI", 23, "bold"),
+        width=300,
+        height=40,
+        fg_color="transparent"
+        )
+    titulo_prox_plantoes.grid(row=0, column=0, pady=30)
+
+    
+
+
+    
+
+
+
+
+
+
 
 #endregion
