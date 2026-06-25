@@ -11,6 +11,5 @@ def login_valido():
 
 app = ctk.CTk()
 bd.inicializar_db()
-# montar_tela_login(app, login_valido)
-montar_tela_principal(app)
+montar_tela_login(app, login_valido)
 app.mainloop()
